@@ -134,7 +134,7 @@ function getHandler () {
   try {
     return require(rootPath + '/' + handlerPath)[handlerName]
   } catch (err) {
-    postError('init/error', err, () => exit(err))
+    postError('/init/error', err, () => exit(err))
   }
 }
 
