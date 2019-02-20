@@ -1,4 +1,4 @@
-FROM jameskyburz/aws-lambda-compiler-node:0.0.13
+FROM jameskyburz/aws-lambda-compiler-node:0.0.17
 
 LABEL maintainer="James Kyburz james.kyburz@gmail.com"
 
