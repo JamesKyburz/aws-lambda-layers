@@ -7,6 +7,8 @@ const { hostname: host, port } = new URL(
   `http://${process.env.AWS_LAMBDA_RUNTIME_API}`
 )
 
+process.env.AWS_EXECUTION_ENV = `AWS_Lambda_nodejs${process.versions.node}`
+
 const handler = getHandler()
 
 const baseContext = getBaseContext()
