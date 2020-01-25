@@ -1,8 +1,0 @@
-aws lambda publish-layer-version \
-  --region eu-west-1 \
-  --layer-name nodejs10 \
-  --zip-file fileb://layer.zip \
-  --description "Node.js v10.4.2 custom runtime" \
-  --compatible-runtimes nodejs nodejs8.10 nodejs6.10 \
-  --license-info "Apache-2.0" \
-  --query 'LayerVersionArn'
