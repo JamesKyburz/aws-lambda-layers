@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export NODE_PATH=/opt/node_modules:/opt/nodejs/node12/node_modules:/opt/nodejs/node_modules:/var/runtime/node_modules:/var/runtime:/var/task
+export NODE_PATH=/opt/nodejs/node12/node_modules:/opt/nodejs/node_modules:/var/runtime/node_modules
 
 /opt/bin/node \
   --expose-gc \
