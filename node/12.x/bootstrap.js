@@ -17,7 +17,9 @@ const next = () =>
   getNextInvocation(({ event, context }) => {
     const handleResult = (err, result) => {
       if (err) {
-        postError(`/invocation/${context.awsRequestId}/error`, err, next)
+        postError(`/invocation/${context.awsRequestId}/error`, err, () =>
+          exit(err)
+        )
       } else {
         post(
           {
