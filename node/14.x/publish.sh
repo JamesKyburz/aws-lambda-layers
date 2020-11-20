@@ -48,7 +48,7 @@ export REGIONS="${2:?}"
 export NODE_MAJOR_VERSION=$(echo ${NODE_VERSION:?} | cut -d '.' -f1)
 
 log_info "Building custom node ${NODE_VERSION:?} runtime"
-docker build --no-cache --build-arg NODE_VERSION -t node-custom-runtime:${NODE_VERSION:?} https://github.com/JamesKyburz/aws-lambda-layers.git#:node/12.x
+docker build --no-cache --build-arg NODE_VERSION -t node-custom-runtime:${NODE_VERSION:?} https://github.com/JamesKyburz/aws-lambda-layers.git#:node/14.x
 docker run --rm node-custom-runtime:${NODE_VERSION:?} cat /tmp/node-v${NODE_VERSION:?}.zip >./layer.zip
 log_success "Built custom node ${NODE_VERSION:?} runtime"
 
