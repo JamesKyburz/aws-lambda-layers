@@ -47,7 +47,7 @@ export REGIONS=${2:?}
 
 log_info "Building sandbox-debugger@${SANDBOX_DEBUGGER_VERSION:?} layer"
 
-docker build --no-cache --build-arg SANDBOX_DEBUGGER_VERSION -t node-sandbox-debugger https://github.com/JamesKyburz/aws-lambda-layers.git#:node/12.x/sandbox-debugger
+docker build --no-cache --build-arg SANDBOX_DEBUGGER_VERSION -t node-sandbox-debugger https://github.com/JamesKyburz/aws-lambda-layers.git#:node/14.x/sandbox-debugger
 docker run --rm node-sandbox-debugger cat /tmp/sandbox-debugger.zip >./layer.zip
 version=$(docker run --rm node-sandbox-debugger cat /tmp/sandbox-debugger-version)
 
@@ -58,10 +58,10 @@ log_info "Publishing layers"
 for region in ${REGIONS:?}; do
   aws lambda publish-layer-version \
     --region ${region:?} \
-    --layer-name "sandbox-debugger-nodejs12" \
+    --layer-name "sandbox-debugger-nodejs14" \
     --zip-file fileb://layer.zip \
     --description "Node.js sandbox-debugger@${version:?}" \
-    --compatible-runtimes nodejs12.x \
+    --compatible-runtimes nodejs14.x \
     --license-info "Apache-2.0" \
     --query 'LayerVersionArn' \
     --output text &

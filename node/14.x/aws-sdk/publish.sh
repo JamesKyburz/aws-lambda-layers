@@ -47,7 +47,7 @@ export REGIONS=${2:?}
 
 log_info "Building aws-sdk@${AWS_SDK_VERSION:?} layer"
 
-docker build --no-cache --build-arg AWS_SDK_VERSION -t node-aws-sdk https://github.com/JamesKyburz/aws-lambda-layers.git#:node/12.x/aws-sdk
+docker build --no-cache --build-arg AWS_SDK_VERSION -t node-aws-sdk https://github.com/JamesKyburz/aws-lambda-layers.git#:node/14.x/aws-sdk
 docker run --rm node-aws-sdk cat /tmp/aws-sdk.zip >./layer.zip
 version=$(docker run --rm node-aws-sdk cat /tmp/aws-sdk-version)
 
@@ -58,10 +58,10 @@ log_info "Publishing layers"
 for region in ${REGIONS:?}; do
   aws lambda publish-layer-version \
     --region ${region:?} \
-    --layer-name "aws-sdk-nodejs12" \
+    --layer-name "aws-sdk-nodejs14" \
     --zip-file fileb://layer.zip \
     --description "Node.js aws-sdk@${version:?}" \
-    --compatible-runtimes nodejs12.x \
+    --compatible-runtimes nodejs14.x \
     --license-info "Apache-2.0" \
     --query 'LayerVersionArn' \
     --output text &
